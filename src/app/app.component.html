@@ -1,0 +1,32 @@
+<mat-card class="mat-elevation-z8">
+    <mat-form-field>
+        <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Search Filter">
+    </mat-form-field>
+    <table [dataSource]="dataSource" mat-table matSort>
+
+        <ng-container matColumnDef="year">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> Year</th>
+            <td *matCellDef="let element" mat-cell> {{element.season}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="winner">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> Winner</th>
+            <td *matCellDef="let element" mat-cell> {{element.winner}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="runner-up">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> Runner-Up</th>
+            <td *matCellDef="let element" mat-cell> {{element.runnerUp}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total-teams">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> Total Teams</th>
+            <td *matCellDef="let element" mat-cell> {{element.totalTeams}} </td>
+        </ng-container>
+
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</mat-card>
